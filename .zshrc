@@ -224,6 +224,9 @@ alias sqlite3='/usr/bin/sqlite3'
 alias ll='colorls -lA --sd --group-directories-first'
 alias ls='colorls --group-directories-first'
 
+
+
+
 #setting environment variables for go-lang
 export GOROOT=~/.local/share/umake/go/go-lang 
 export GOPATH=~/Desktop/Programs/Go-Lang
@@ -246,15 +249,27 @@ export PATH="/home/subhankar/anaconda3/bin:$PATH"
 export TESSDATA_PREFIX='/usr/share/tesseract-ocr/tessdata'
 export SCROLLVIEW_PATH=$PWD/java
 
-# Aliases
+
+
+###############
+### Aliases ###
+###############
 alias fucking='sudo apt-get'
 alias gdrive='~/Downloads/gdrive/./gdrive-linux-x64'
 alias learnwords='python /home/subhankar/Desktop/Programs/Python/GRE/dictionary.py words.txt'
 alias wordlist='python /home/subhankar/Desktop/Programs/Python/GRE/words.py'
 alias dictionary='python /home/subhankar/Desktop/Programs/Python/GRE/dictionary.py'
+alias select_intel='sudo prime-select intel'
+alias select_nvidia='sudo prime-select nvidia'
 
-# Functions
-##### Usage #####
+#alias for navigating to competitve programming folder
+# alias cpdir='cd /home/subhankar/Desktop/Programs/competitive_programming/'
+
+
+#################
+### Functions ###
+#################
+#----- Usage -----#
 ## func params ##
 runcpp() {
 	g++ -o "$1.out" "$1"
@@ -262,6 +277,7 @@ runcpp() {
 }
 
 youtube_playlist(){
+  sudo pip install -U youtube-dl
 	youtube-dl --yes-playlist -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' "$1"
 }
 
@@ -274,6 +290,21 @@ slack(){
 	else
 		curl -X POST -H 'Content-type: application/json' --data "{'text':'Run Failed'}" https://hooks.slack.com/services/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
 	fi
+}
+
+cpdir(){
+  echo /home/subhankar/Desktop/Programs/competitive_programming/"$1/$2"
+  if [[ -d /home/subhankar/Desktop/Programs/competitive_programming/"$1/$2" ]]
+  then
+    cd /home/subhankar/Desktop/Programs/competitive_programming/"$1/$2"
+    code .
+    echo "Directory /home/subhankar/Desktop/Programs/competitive_programming/"$1/$2" exists." 
+  else
+    echo "Error: Directory /home/subhankar/Desktop/Programs/competitive_programming/"$1/$2" does not exists."
+    mkdir /home/subhankar/Desktop/Programs/competitive_programming/"$1/$2"
+    cd /home/subhankar/Desktop/Programs/competitive_programming/"$1/$2"
+    code .
+  fi
 }
 
 
